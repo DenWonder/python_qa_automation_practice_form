@@ -1,0 +1,2 @@
+class Endpoints:
+    BASE_URL = "https://demoqa.com/automation-practice-form"
