@@ -11,7 +11,3 @@ def browser_config():
     browser.config.window_height = 1080
     browser.config.headless = False
     browser.config.timeout = float(5)
-
-@pytest.fixture()
-def browser_open(browser_config):
-    browser.open("/")
