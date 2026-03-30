@@ -2,7 +2,34 @@ import os.path
 from time import sleep
 from selene import browser, have
 
+from demoqa.model.pages.automation_practice_form import AutomationPracticeForm
 from tests.endpoints import Endpoints
+
+
+def test_practice_form_with_pattern(browser_config):
+    practice_form = AutomationPracticeForm()
+    practice_form.open()
+    practice_form.fill_first_name('Harry')
+    practice_form.fill_last_name('Potter')
+    practice_form.fill_email('harrypotter@mailtohogwards.com')
+    practice_form.select_gender("Male")
+    practice_form.fill_mobile(1234567891)
+    practice_form.fill_date_of_birth(1967, "May", 12)
+    practice_form.fill_subjects(["Maths", "Physics"])
+    practice_form.select_hobbies(["Sports"])
+    practice_form.fill_picture(os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources", "img.jpg"))
+    practice_form.fill_current_address("Kaky-to tam pereulok v kakom-to tam gorode")
+    practice_form.select_state("NCR")
+    practice_form.select_city("Delhi")
+    practice_form.submit()
+    sleep(8)
+    practice_form.should_registered_user_with(
+        'Harry', 'Potter', 'harrypotter@mailtohogwards.com',
+        'Male', 1234567891, 1967, 'May',
+        12, 'Maths, Physics', 'Sports', 'img.jpg',
+        'Kaky-to tam pereulok v kakom-to tam gorode', 'NCR', 'Delhi'
+
+    )
 
 
 def test_practice_form(browser_config):
@@ -32,7 +59,7 @@ def test_practice_form(browser_config):
     hobbies.all('.form-check').element_by(have.exact_text('Music')).click()
 
     browser.element('#uploadPicture').set_value(
-        os.path.join(os.path.dirname(os.path.abspath('.')), "resources", "img.jpg")
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources", "img.jpg")
     )
 
     browser.element('#currentAddress').set_value("Munchen, Germany, Biertrinkenstrasse, 14")
