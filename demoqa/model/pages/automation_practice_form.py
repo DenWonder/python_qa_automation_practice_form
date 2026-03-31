@@ -1,6 +1,7 @@
 from selene import have, command, be
 from selene.support.shared import browser
 
+from demoqa.data.users import User
 from tests.endpoints import Endpoints
 
 
@@ -113,3 +114,28 @@ class AutomationPracticeForm:
         )
         self.close_modal_button.should(be.clickable)
         return self
+
+    def should_contain_registered_user_data(self, user: User):
+        full_name = user.first_name + " " + user.last_name
+        full_birthday = f"{user.birth_day} {user.birth_month},{user.birth_year}"
+        state_and_city = user.state + " " + user.city
+        subjects_line = ", ".join(str(item) for item in user.subjects)
+        hobbies_line = ", ".join(str(item) for item in user.hobbies)
+        browser.element('.table').all('td').even.should(
+            have.exact_texts(
+                full_name,
+                user.email,
+                user.gender,
+                user.phone_number,
+                full_birthday,
+                subjects_line,
+                hobbies_line,
+                user.picture,
+                user.current_address,
+                state_and_city
+            )
+        )
+        self.close_modal_button.should(be.clickable)
+        return self
+
+
