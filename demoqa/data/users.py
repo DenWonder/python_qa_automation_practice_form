@@ -35,6 +35,23 @@ test_user_1 = User(
     picture='img.jpg',
 )
 
+test_user_2 = User(
+    first_name="Frodo",
+    last_name="Baggins",
+    email='frodobaggins@mailtoshare.com',
+    gender='Male',
+    phone_number='7771231239',
+    birth_day=24,
+    birth_month='July',
+    birth_year=1991,
+    subjects=["English"],
+    hobbies=["Sports", "Reading"],
+    current_address='Share, Bilbostreet, 4',
+    state='NCR',
+    city='Delhi',
+    picture='img.jpg',
+)
+
 
 
 

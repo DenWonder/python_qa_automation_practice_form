@@ -1,11 +1,19 @@
-from selene import have, command, be
+from selene import have, be
 from selene.support.shared import browser
 
+from utils import resource
 from demoqa.data.users import User
-from tests.endpoints import Endpoints
+from demoqa.endpoints import Endpoints
 
 
 class AutomationPracticeForm:
+    """
+        Page object pattern.
+
+        Паттерн Page Object - это шаблон проектирования, который позволяет абстрагировать взаимодействие с веб-страницей.
+        Он позволяет разделить тесты и логику взаимодействия с элементами страницы. Это позволяет упростить поддержку тестов,
+        так как при изменении страницы, вам нужно будет внести изменения только в одном месте.
+    """
     def __init__(self):
         self.first_name_input_field = browser.element('#firstName')
         self.last_name_input_field = browser.element('#lastName')
@@ -25,6 +33,8 @@ class AutomationPracticeForm:
     def open(self):
         browser.open(Endpoints.AUTOMATION_PRACTICE_FORM_URL)
         return self
+
+    #region PageObject pattern methods
 
     def fill_first_name(self, value):
         self.first_name_input_field.type(value)
@@ -67,7 +77,7 @@ class AutomationPracticeForm:
         return self
 
     def fill_picture(self, value):
-        self.picture_input_field.set_value(value)
+        self.picture_input_field.set_value(resource.path(value))
         return self
 
     def fill_current_address(self, value):
@@ -85,6 +95,36 @@ class AutomationPracticeForm:
         cities = browser.element('#react-select-4-listbox')
         cities.all('div[role="option"]').element_by(have.exact_text(city)).click()
         return self
+
+    #endregion
+
+    #region Steps object pattern methods
+
+    def register_user(self, user_data: User):
+        """
+            Steps Object - это подход к использованию паттерна PageObject, заключающийся в инкапсулировании
+            шагов пользователя. Т.Е. не только скрытие поиска локаторов, но и скрытие логики взаимодействия
+            с элементами страницы(проверки, клики, вводы и т.д.). Его стоит использовать, если бизнес-контекст
+            для нас более приоритетен, чем технический.
+        :param user_data:User -- Объект модели пользователь
+        :return:
+        """
+        self.fill_first_name(user_data.first_name)
+        self.fill_last_name(user_data.last_name)
+        self.fill_email(user_data.email)
+        self.select_gender(user_data.gender)
+        self.fill_mobile(user_data.phone_number)
+        self.fill_date_of_birth(user_data.birth_year, user_data.birth_month, user_data.birth_day)
+        self.fill_subjects(user_data.subjects)
+        self.select_hobbies(user_data.hobbies)
+        self.fill_picture(user_data.picture)
+        self.fill_current_address(user_data.current_address)
+        self.select_state(user_data.state)
+        self.select_city(user_data.city)
+        self.submit()
+        return self
+
+    #endregion
 
     def submit(self):
         self.submit_button.click()
