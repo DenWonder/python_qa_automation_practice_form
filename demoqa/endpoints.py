@@ -4,3 +4,4 @@ class Endpoints:
     TEXT_BOX_URL = "/text-box"
     BOOK_STORE_LOGIN_URL = "/login"
     BOOK_STORE_REGISTER_URL = "/register"
+    BOOK_STORE_PROFILE_URL = "/profile"
