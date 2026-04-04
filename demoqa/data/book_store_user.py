@@ -1,4 +1,5 @@
 import dataclasses
+import time
 
 @dataclasses.dataclass
 class BookStoreUser:
@@ -8,14 +9,14 @@ class BookStoreUser:
     last_name: str
 
 test_book_store_user_1 = BookStoreUser(
-    user_name='Spider',
+    user_name=f'Spider{time.time()}',
     password='Qwerty123!',
     first_name='Peter',
     last_name='Parker'
 )
 
 test_book_store_user_2 = BookStoreUser(
-    user_name='ImABatGuy',
+    user_name=f'ImABatGuy{time.time()}',
     password='<PASSWORD>!',
     first_name='Bruce',
     last_name='Vayne'
