@@ -14,3 +14,18 @@ class NavigationPanel:
         self.container.open("Elements").open("Text Box")
         return self
 
+    def open_practice_form(self):
+        self.container.open("Forms").open("Practice Form")
+        return self
+
+    def open_book_store_login(self):
+        self.container.open("Book Store Application").open("Login")
+        return self
+
+    def open_book_store(self):
+        self.container.open("Book Store Application").open("Book Store")
+        return self
+
+    def open_book_store_profile(self):
+        self.container.open("Book Store Application").open("Profile")
+        return self

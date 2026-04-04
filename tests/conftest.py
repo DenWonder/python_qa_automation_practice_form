@@ -10,12 +10,12 @@ from demoqa.model.pages.text_box_form import TextBoxForm
 def browser_config():
     browser.config.base_url = Endpoints.BASE_URL
     browser.config.headless = False
-    browser.config.timeout = float(15)
+    browser.config.timeout = float(10)
     yield
     browser.quit()
 
 @pytest.fixture()
-def practice_form():
+def practice_form_page():
     practice_form = AutomationPracticeForm()
     practice_form.open()
     return practice_form
