@@ -43,6 +43,14 @@ class RegisterPage:
         self.back_to_login_button.click()
         return self
 
+    def get_alert_message(self):
+        message = browser.switch_to.alert.text
+        print("message:", message)
+        return message
+
+    def accept_alert_message(self):
+        browser.switch_to.alert.accept()
+
     #endregion
 
     #region StepObject pattern methods
