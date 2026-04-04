@@ -1,0 +1,1 @@
+USER_REGISTERED_SUCCESSFULLY_MESSAGE = "User Registered Successfully."

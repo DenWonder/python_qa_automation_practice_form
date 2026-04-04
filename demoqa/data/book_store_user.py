@@ -17,7 +17,7 @@ test_book_store_user_1 = BookStoreUser(
 
 test_book_store_user_2 = BookStoreUser(
     user_name=f'ImABatGuy{time.time()}',
-    password='<PASSWORD>!',
+    password='Password123!',
     first_name='Bruce',
     last_name='Vayne'
 )

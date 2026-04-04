@@ -1,3 +1,5 @@
+from time import sleep
+
 import pytest
 from selene.support.shared import browser
 
@@ -31,6 +33,7 @@ def text_box_page():
 def book_store_registration():
     register_page = RegisterPage()
     register_page.open()
+    sleep(2)
     return register_page
 
 @pytest.fixture()
