@@ -1,4 +1,5 @@
 import pytest
+import os
 from selene.support.shared import browser
 
 from demoqa.endpoints import Endpoints
@@ -11,6 +12,8 @@ def browser_config():
     browser.config.base_url = Endpoints.BASE_URL
     browser.config.headless = False
     browser.config.timeout = float(10)
+    if os.getenv("CI"):
+        browser.config.headless = True
     yield
     browser.quit()
 
