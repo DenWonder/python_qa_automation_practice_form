@@ -1,0 +1,13 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","2503","test_practice_form_steps_object_pattern","tests","Fri Apr 10 19:15:44 UTC 2026","passed","Fri Apr 10 19:15:47 UTC 2026","","test_practice_form","",""
+"","586","test_text_box_page_object_patter","tests","Fri Apr 10 19:15:54 UTC 2026","passed","Fri Apr 10 19:15:55 UTC 2026","","test_text_box","",""
+"
+Application Manager pattern approach: (aka Single Entry Point)
+A single App class serves as the entry point to all page objects.
+This avoids scattered ""page = Page()"" calls in every test, keeps page
+object wiring in one place, and makes the test API discoverable through IDE autocompletion on app.
+","4733","test_practice_form_application_manager_and_steps_object_pattern","tests","Fri Apr 10 19:15:47 UTC 2026","passed","Fri Apr 10 19:15:52 UTC 2026","","test_practice_form","",""
+"","20822","test_text_box_page_object_with_assertion","tests","Fri Apr 10 19:15:57 UTC 2026","passed","Fri Apr 10 19:16:18 UTC 2026","","test_text_box","",""
+"","735","test_text_box_steps_object","tests","Fri Apr 10 19:16:20 UTC 2026","passed","Fri Apr 10 19:16:21 UTC 2026","","test_text_box","",""
+"","2579","test_practice_form_page_object_pattern","tests","Fri Apr 10 19:15:39 UTC 2026","passed","Fri Apr 10 19:15:42 UTC 2026","","test_practice_form","",""
+"","3165","test_text_box_application_manager_pattern","tests","Fri Apr 10 19:16:21 UTC 2026","passed","Fri Apr 10 19:16:24 UTC 2026","","test_text_box","",""
