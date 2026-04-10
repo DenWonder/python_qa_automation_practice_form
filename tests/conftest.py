@@ -1,7 +1,8 @@
+import allure
 import pytest
 import os
 from selene.support.shared import browser
-
+from selenium import webdriver
 from demoqa.endpoints import Endpoints
 from demoqa.model.pages.automation_practice_form import AutomationPracticeForm
 from demoqa.model.pages.text_box_form import TextBoxForm
@@ -9,11 +10,16 @@ from demoqa.model.pages.text_box_form import TextBoxForm
 
 @pytest.fixture(autouse=True)
 def browser_config():
-    browser.config.base_url = Endpoints.BASE_URL
-    browser.config.headless = False
-    browser.config.timeout = float(10)
+    options = webdriver.ChromeOptions()
+
     if os.getenv("CI"):
-        browser.config.headless = True
+        options.add_argument("--headless")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+
+    browser.config.driver_options = options
+    browser.config.base_url = Endpoints.BASE_URL
+    browser.config.timeout = float(10)
     yield
     browser.quit()
 
